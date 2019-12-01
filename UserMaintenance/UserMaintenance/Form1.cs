@@ -16,14 +16,15 @@ namespace UserMaintenance
     public partial class Form1 : Form
     {
         BindingList<User> users = new BindingList<User>();
+
         public Form1()
         {
             InitializeComponent();
 
             label1.Text = Resource1.FullName; // label1
-            
             button1.Text = Resource1.Add; // button1
             button2.Text = Resource1.Write;
+            button3.Text = Resource1.Delete;
 
             // listbox1
             listBox1.DataSource = users;
@@ -39,7 +40,6 @@ namespace UserMaintenance
             };
             users.Add(u);
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -53,8 +53,11 @@ namespace UserMaintenance
                 }
                 sw.Close();
             }
-            
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            users.Remove((User)listBox1.SelectedItem);
         }
     }
 }
